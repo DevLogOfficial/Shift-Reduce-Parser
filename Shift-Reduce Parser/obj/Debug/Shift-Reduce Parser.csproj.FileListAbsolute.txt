@@ -1,0 +1,22 @@
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\bin\Debug\Shift-Reduce Parser.exe.config
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\bin\Debug\Shift-Reduce Parser.exe
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\bin\Debug\Shift-Reduce Parser.pdb
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.csproj.AssemblyReference.cache
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.csproj.SuggestedBindingRedirects.cache
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift_Reduce_Parser.Form1.resources
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift_Reduce_Parser.Properties.Resources.resources
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.csproj.GenerateResource.cache
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.csproj.CoreCompileInputs.cache
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.exe
+C:\Users\logan\source\repos\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.pdb
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\bin\Debug\Shift-Reduce Parser.exe.config
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\bin\Debug\Shift-Reduce Parser.exe
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\bin\Debug\Shift-Reduce Parser.pdb
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.csproj.AssemblyReference.cache
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.csproj.SuggestedBindingRedirects.cache
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift_Reduce_Parser.Form1.resources
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift_Reduce_Parser.Properties.Resources.resources
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.csproj.GenerateResource.cache
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.csproj.CoreCompileInputs.cache
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.exe
+C:\Users\logan\OneDrive\Documents\GitHub\Shift-Reduce Parser\Shift-Reduce Parser\obj\Debug\Shift-Reduce Parser.pdb
