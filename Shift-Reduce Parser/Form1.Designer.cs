@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
             "E -> E + T"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new string[] {
             "E -> T"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new string[] {
             "T -> T * F"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem(new string[] {
             "T -> F"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("F -> (E)");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("F -> id");
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem("F -> (E)");
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem("F -> id");
             this.stack_List = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.parse_Button = new System.Windows.Forms.Button();
@@ -1329,12 +1329,12 @@
             this.grammar_List.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.grammar_List.HideSelection = false;
             this.grammar_List.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12});
+            listViewItem19,
+            listViewItem20,
+            listViewItem21,
+            listViewItem22,
+            listViewItem23,
+            listViewItem24});
             this.grammar_List.LabelWrap = false;
             this.grammar_List.Location = new System.Drawing.Point(26, 897);
             this.grammar_List.Margin = new System.Windows.Forms.Padding(7);
@@ -1388,9 +1388,10 @@
             // nav_Back
             // 
             this.nav_Back.AutoSize = true;
+            this.nav_Back.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.nav_Back.Location = new System.Drawing.Point(1337, 780);
             this.nav_Back.Name = "nav_Back";
-            this.nav_Back.Size = new System.Drawing.Size(54, 39);
+            this.nav_Back.Size = new System.Drawing.Size(37, 39);
             this.nav_Back.TabIndex = 19;
             this.nav_Back.Text = "<";
             this.nav_Back.UseVisualStyleBackColor = true;
@@ -1400,9 +1401,10 @@
             // nav_Forward
             // 
             this.nav_Forward.AutoSize = true;
+            this.nav_Forward.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.nav_Forward.Location = new System.Drawing.Point(1540, 780);
             this.nav_Forward.Name = "nav_Forward";
-            this.nav_Forward.Size = new System.Drawing.Size(54, 39);
+            this.nav_Forward.Size = new System.Drawing.Size(37, 39);
             this.nav_Forward.TabIndex = 20;
             this.nav_Forward.Text = ">";
             this.nav_Forward.UseVisualStyleBackColor = true;
