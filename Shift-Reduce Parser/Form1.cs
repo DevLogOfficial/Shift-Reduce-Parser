@@ -17,9 +17,14 @@ namespace Shift_Reduce_Parser
     public partial class Form1 : Form
     {
         string input;
+        string identifier;
         Stack<string> stack;
         Dictionary<string, int> columns = new Dictionary<string, int>();
+
         int index = 0;
+        int currentState = 0;
+        int prevIdIndex = 0;
+        int prevMatchIndex;
 
         private Stopwatch _process_Timer;
 
@@ -69,60 +74,58 @@ namespace Shift_Reduce_Parser
         {
             string reduceTo = grammar_List.Items[productionRule - 1].Text.Substring(0, 1); //Get First element in Production Rule
             string process = derivation_Process_List.Items[derivation_Process_List.Items.Count - 1].Text;
+            Debug.WriteLine(grammar_List.Items[productionRule - 1].Text);
             int goToState = 0;
-            if (grammar_List.Items[productionRule - 1].Text.Split(new char[] { '+', '*' }).Length < 2)
+            if (grammar_List.Items[productionRule - 1].Text.Split(new char[] { '+', '*', '(', ')' }).Length < 2)
             {
                 stack.Pop();
                 stack_List.Items.RemoveAt(stack_List.Items.Count - 1);
                 int column = columns[reduceTo];
                 int rowFromStack = GetRowFromStack();
                 int row = rowFromStack + 2;
-
                 stack.Push(reduceTo + Parse_Table.GetControlFromPosition(column, row).Text);
                 stack_List.Items.Add(reduceTo + Parse_Table.GetControlFromPosition(column, row).Text);
                 goToState = Int32.Parse(Parse_Table.GetControlFromPosition(column, row).Text);
 
                 //Calculate Derivation Process
-                Regex regex = new Regex(Regex.Escape(grammar_List.Items[productionRule - 1].Text.Substring(5)));
-                process = regex.Replace(process, reduceTo, 1);
+                string replace = grammar_List.Items[productionRule - 1].Text.Substring(5);
+                if (replace == "id")
+                {
+                    replace = identifier;
+                }
+                process = process.Remove(prevMatchIndex, replace.Length).Insert(prevMatchIndex, reduceTo);
             }
             else
             {
-                string stackedItems = "";
-                bool ended = false;
-                for (int i = 0; i < stack.Count(); i++) //For Each Item in Our Stack we will
+                string matches = grammar_List.Items[productionRule - 1].Text.Substring(5).Replace(" ", "");
+                int numberToPop = matches.Length;
+                Debug.WriteLine("NUMBER TO POP: " + numberToPop + "REPLACING: " + grammar_List.Items[productionRule - 1].Text.Substring(5));
+                int currentState = -1;
+                for (int i = 0; i < numberToPop; i++)
                 {
-                    char[] charArray = stack.ElementAt(0).ToCharArray();
-                    for (int j = charArray.Length; j > 0; j--) //Check Each character in that item
-                    {
-                        if (charArray[j - 1] != '+' && charArray[j - 1] != '*')
-                        {
-                            stackedItems = charArray[j - 1] + stackedItems;
-                        }
-                        else
-                        {
-                            stack.Pop();
-                            stack_List.Items.RemoveAt(stack_List.Items.Count - 1);
-                            ended = true;
-                            break;
-                        }
-                    }
-                    if (ended)
-                    {
-                        break;
-                    }
                     stack.Pop();
                     stack_List.Items.RemoveAt(stack_List.Items.Count - 1);
+                    if (stack.Peek().Substring(0, 1) == "+" || stack.Peek().Substring(0, 1) == "*" || stack.Peek().Substring(0, 1) == "(" || stack.Peek().Substring(0, 1) == ")")
+                    {
+                        currentState = Int32.Parse(stack.Peek().Substring(1));
+                    } else if (stack.Peek().Length == 1)
+                    {
+                        currentState = Int32.Parse(stack.Peek().Substring(0));
+                    }
                 }
                 int column = columns[reduceTo];
-                int rowFromStack = GetStateFromStack();
-                int row = rowFromStack + 2;
+                Debug.WriteLine("REDUCETO" + reduceTo + "CURRENTSTATE: " + currentState);
+                int row = currentState + 2;
                 goToState = Int32.Parse(Parse_Table.GetControlFromPosition(column, row).Text);
+                stack.Push(reduceTo + Parse_Table.GetControlFromPosition(column, row).Text);
+                stack_List.Items.Add(reduceTo + Parse_Table.GetControlFromPosition(column, row).Text);
 
                 //Calculate Derivation Process
                 string toReplace = grammar_List.Items[productionRule - 1].Text.Substring(5);
                 toReplace = toReplace.Replace(" ", ""); //Remove spaces from rule
-                process = process.Replace(toReplace, reduceTo);
+                prevMatchIndex -= toReplace.Length - 1;
+                process = process.Remove(prevMatchIndex, toReplace.Length).Insert(prevMatchIndex, reduceTo);
+                Debug.WriteLine(prevMatchIndex);
             }
             //Populate Tables
             derivation_Process_List.Items.Add(process);
@@ -152,7 +155,7 @@ namespace Shift_Reduce_Parser
         private int GetStateFromStack()
         {
             int stateFromStack = -1;
-            char[] charArray = stack.ElementAt(1).ToCharArray(); //Look at characters of the last item in the stack
+            char[] charArray = stack.ElementAt(stack.Count - 1).ToCharArray(); //Look at characters of the last item in the stack
             for (int j = charArray.Count(); j > 0; j--)
             {
                 if (Char.IsDigit(charArray[j - 1]))
@@ -215,6 +218,7 @@ namespace Shift_Reduce_Parser
             }
 
             currentActiveStep = 0;
+            prevMatchIndex = 0;
             steps_Result_Label.Visible = false;
             nav_Back.Visible = false;
             nav_Forward.Visible = false;
@@ -240,6 +244,7 @@ namespace Shift_Reduce_Parser
             stack_List.Refresh();
 
             index = 0;
+            prevIdIndex = 0;
 
             string pattern = @"(\+|\*|\(|\)|\$)";
             string[] matches = Regex.Split(input, pattern, RegexOptions.IgnoreCase);
@@ -248,7 +253,6 @@ namespace Shift_Reduce_Parser
             {
                 if (matches[index] != "")
                 {
-                    Debug.WriteLine("MATCH: " + matches[index]);
                     Application.DoEvents();
                     if (matches[index] != "+" && matches[index] != "*" && matches[index] != "(" && matches[index] != "(" && matches[index] != ")" && matches[index] != "$")
                     {
@@ -263,6 +267,7 @@ namespace Shift_Reduce_Parser
                         }
                         if (acceptable)
                         {
+                            identifier = matches[index];
                             matches[index] = "id";
                         }
                     }
@@ -280,6 +285,34 @@ namespace Shift_Reduce_Parser
                                 stepsColor.Add(Color.LightGreen);
                                 if (control.Text.StartsWith("S"))
                                 {
+                                    if (matches[index] == "id" && index > 0)
+                                    {   
+                                        int count = 0;
+                                        for (int k = prevIdIndex + 1; k < matches.Length; k++)
+                                        {
+                                            
+                                            if (matches[k] == "+" || matches[k] == "*" || matches[k] == "(" || matches[k] == ")" || matches[k] == "$")
+                                            {
+                                                count++;
+                                            }
+                                            else if (matches[k] != "" && matches[k] != " ")
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        prevMatchIndex += count;
+                                        prevIdIndex = index;
+                                    }
+                                    else
+                                    {
+                                        if (index > 0) 
+                                        {
+                                            if (matches[index - 1] == "id")
+                                            {
+                                                prevMatchIndex++;
+                                            }
+                                        }
+                                    }
                                     shift(matches[index], goal);
                                 }
                                 else if (control.Text.StartsWith("R"))
@@ -291,6 +324,7 @@ namespace Shift_Reduce_Parser
                                     _process_Timer.Stop();
                                     accepted = true;
                                     index++;
+                      
                                 }
                                 Control state = Parse_Table.GetControlFromPosition(0, row);
 
